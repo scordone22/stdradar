@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "stdradar"
+version = "0.1.0"
+description = "中国标准版本体检：判定库里每一件是现行、过期、过渡还是废止"
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "Apache-2.0" }
+authors = [{ name = "Scordone" }]
+keywords = ["standards", "GB", "compliance", "china", "quality-management"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: Apache Software License",
+    "Operating System :: OS Independent",
+    "Topic :: Office/Business",
+]
+dependencies = []
+
+[project.optional-dependencies]
+dev = ["pytest>=7"]
+
+[project.scripts]
+stdradar = "stdradar.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/scordone22/stdradar"
+
+[tool.setuptools.packages.find]
+include = ["stdradar*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
