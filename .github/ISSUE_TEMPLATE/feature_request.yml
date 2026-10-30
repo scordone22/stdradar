@@ -1,0 +1,26 @@
+name: 功能建议
+description: 缺数据源、缺判定分支、缺导入格式，或想接入某个行业
+title: "[建议] "
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: need
+    attributes:
+      label: 你要解决什么问题
+      description: 请描述具体场景（谁在什么环节需要这个结果），不要只写"希望支持 XX"
+      placeholder: 例如：投标前要核对技术标引用的标准是否作废，标准清单来自甲方发的 Word，格式很乱
+    validations:
+      required: true
+  - type: textarea
+    id: current
+    attributes:
+      label: 你现在怎么做的
+      description: 手工流程是什么、花多久、容易错在哪
+    validations:
+      required: false
+  - type: textarea
+    id: idea
+    attributes:
+      label: 你设想的方案
+    validations:
+      required: false

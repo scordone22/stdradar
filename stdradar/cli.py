@@ -106,8 +106,8 @@ def cmd_check(args) -> int:
               f"{j.latest.code.canonical if j.latest else '-'} | "
               f"{VERDICT_MARK[j.verdict]} | {j.reason} |")
     print()
-    for k, v in sorted(plan.counts().items(), key=lambda kv: -kv[1]):
-        print(f"  {k:<12}{v}")
+    for k, v in sorted(plan.counts().items(), key=lambda kv: (-kv[1], kv[0])):
+        print(f"  {k:<14}{v}")
     if args.out:
         with open(args.out, "w", encoding="utf-8") as f:
             f.write("| 库内版本 | 官方版本 | 判定 | 依据 | 处置 |\n|---|---|---|---|---|\n")

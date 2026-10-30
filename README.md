@@ -1,5 +1,9 @@
 # stdradar · 中国标准版本体检
 
+[![test](https://github.com/scordone22/stdradar/actions/workflows/ci.yml/badge.svg)](https://github.com/scordone22/stdradar/actions/workflows/ci.yml)
+[![License](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](LICENSE)
+![Python](https://img.shields.io/badge/python-3.9%20%7C%203.10%20%7C%203.11%20%7C%203.12%20%7C%203.13-blue)
+
 给一个标准号，判定它在你库里是**现行 / 已过期 / 过渡期 / 已废止**，并给出唯一处置动作。
 
 解决的是一个具体而普遍的麻烦：企业的标准清单里混着作废版本，投标、审查、体系审核时被挑出来，往往已经是最后关头。查一遍要人工一个个点官网，几百个标准就是几天工作量。
@@ -16,6 +20,24 @@ $ stdradar judge "GB 50014-2006" --latest "GB 50014-2021" --status 现行 --impl
 判定  : 过期  (outdated)
 依据  : 新版 GB 50014-2021 已实施（2022-01-01）
 处置  : 旧版移入「已废止版本」目录并注明取代依据；新版归档到现行目录。
+```
+
+离线批量体检，直接跑仓库里的示例清单：
+
+```bash
+$ stdradar check examples/标准清单示例.csv
+| 库内版本 | 官方版本 | 判定 | 依据 |
+|---|---|---|---|
+| GB 50014-2006 | GB 50014-2021 | 过期 | 新版 GB 50014-2021 已实施（2022-01-01） |
+| GB/T 18920-2002 | GB/T 18920-2020 | 过期 | 新版 GB/T 18920-2020 已实施（2021-02-01） |
+| GB 3838-2002 | GB 3838-2002 | OK | 库内即最新版 GB 3838-2002，状态现行 |
+| GB 16171-2012 | GB 16171.1-2024 | 并存 | GB 16171.1-2024 属分部分标准，与主标准 GB 16171 并存 |
+| GB 50015-2019 | - | 未知 | 官方渠道未返回该编号（行业标准/工程建设标准不在公开系统收录范围） |
+
+  outdated      2
+  unknown       2
+  current       1
+  part_parallel 1
 ```
 
 ## 为什么不是「比年号大小」

@@ -1,0 +1,54 @@
+name: 误判报告
+description: stdradar 把某条标准判错了。这类 issue 最有价值，请尽量附官方页面。
+title: "[误判] "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        判定错误会让整批有效标准被误归档，或让作废标准留在库里，后果都很大。
+        请把下面几项填全，尤其是**官方页面链接**——没有它我无法复现，只能猜。
+  - type: input
+    id: code
+    attributes:
+      label: 被判定标准号
+      placeholder: 例如 GB 50014-2006
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: 命令与输入
+      description: 贴出你实际运行的命令，或 check 用的 CSV 行
+      render: shell
+      placeholder: stdradar judge "GB 50014-2006" --latest "GB 50014-2021" --status 现行 --implement 2022-01-01
+    validations:
+      required: true
+  - type: input
+    id: expected
+    attributes:
+      label: 你期望的判定
+      placeholder: 例如 现行 / 过期 / 并存 / 未知
+    validations:
+      required: true
+  - type: input
+    id: actual
+    attributes:
+      label: 实际输出的判定
+    validations:
+      required: true
+  - type: input
+    id: source
+    attributes:
+      label: 官方来源链接
+      description: 国家标准全文公开系统、住建部公告页或生态环境部标准栏目的具体页面
+      placeholder: https://openstd.samr.gov.cn/...
+    validations:
+      required: false
+  - type: textarea
+    id: extra
+    attributes:
+      label: 补充说明
+      description: 是否属于分部分标准、是否处于过渡期、是否有修改单
+    validations:
+      required: false
